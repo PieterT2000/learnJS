@@ -25,6 +25,7 @@ CONTAINER STYLES
   /* stack child elements instead of aligning in a row */
   flex-direction: column;
   background-color: #d4dce8;
+  color: #b053be;
 }
 
 .siteContainer .tapBox button {
