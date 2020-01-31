@@ -1,0 +1,85 @@
+* {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+/* -------------------- 
+SITE CONTAINER STYLES
+----------------------- */
+.siteContainer {
+  padding: 50px 0 50px 50px;
+  background-color: #33c6ab;
+}
+
+.header h1 {
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+.header .menuButton {
+  color: #000;
+  border: 2px solid #000;
+  transition: color 0.25s, background-color 0.25s;
+  -webkit-transition: color 0.25s, background-color 0.25s;
+  -moz-transition: color 0.25s, background-color 0.25s;
+  -ms-transition: color 0.25s, background-color 0.25s;
+  -o-transition: color 0.25s, background-color 0.25s;
+}
+
+.header .menuButton:hover,
+.menuIsOpen .menuButton {
+  background-color: #000;
+  color: #33c6ab;
+}
+
+/* -------------------- 
+OFFCANVAS MENU STYLES
+----------------------- */
+
+/* 1. configure container */
+.offCanvasMenu {
+  width: 300px;
+  background-color: #132433;
+  position: absolute;
+  top: 0;
+  left: -300px;
+  height: 100vh;
+  padding: 50px 0;
+}
+
+/* 2. style menu items */
+.offCanvasMenu .menuItem {
+  padding: 15px 50px;
+  font-size: 24px;
+}
+
+.offCanvasMenu .menuItem:hover {
+  background-color: #000;
+}
+.offCanvasMenu .menuItem:hover > a {
+  color: rgba(255, 255, 255, 0.8);
+}
+.offCanvasMenu .menuItem a {
+  color: #7490a4;
+  text-decoration: none;
+}
+
+/* -------------------- 
+'TOGETHER' STYLES for menu and site-container
+----------------------- */
+.offCanvasMenu,
+.siteContainer {
+  transition: transform 0.3s ease-in;
+  -webkit-transition: transform 0.3s ease-in;
+  -moz-transition: transform 0.3s ease-in;
+  -ms-transition: transform 0.3s ease-in;
+  -o-transition: transform 0.3s ease-in;
+}
+.menuIsOpen .offCanvasMenu,
+.menuIsOpen .siteContainer {
+  transform: translateX(300px);
+  -webkit-transform: translateX(300px);
+  -moz-transform: translateX(300px);
+  -ms-transform: translateX(300px);
+  -o-transform: translateX(300px);
+}
