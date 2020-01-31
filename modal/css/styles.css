@@ -8,6 +8,12 @@ CONTAINER STYLES
 .siteContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.siteContainer h1 {
+  margin: 35px 0;
 }
 
 .siteContainer .tapBox {
@@ -38,8 +44,8 @@ CONTAINER STYLES
 }
 
 .siteContainer .tapBox img {
-  width: 56px;
-  margin-top: 18px;
+  width: 64px;
+  margin-top: 20px;
 }
 
 /* --------------------- 
@@ -90,8 +96,9 @@ MODAL STYLES
   top: -15px;
   right: -15px;
   background-color: #758ea6;
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
+  border: 3px solid #758ea6;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -101,6 +108,11 @@ MODAL STYLES
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.modal span:hover {
+  border-color: #842391;
+  background-color: #b053be;
 }
 
 /* create x icon using pseudoselectors */
