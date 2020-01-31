@@ -1,0 +1,130 @@
+* {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+/* --------------------- 
+CONTAINER STYLES
+------------------------ */
+.siteContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.siteContainer .tapBox {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* stack child elements instead of aligning in a row */
+  flex-direction: column;
+  background-color: #d4dce8;
+}
+
+.siteContainer .tapBox button {
+  background-color: #b053be;
+  color: #ffffff;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border: none;
+  font-size: 20px;
+}
+
+.tapBox button:hover {
+  background-color: #842391;
+}
+
+.siteContainer .tapBox img {
+  width: 56px;
+  margin-top: 18px;
+}
+
+/* --------------------- 
+MODAL STYLES
+------------------------ */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #6c7075;
+  /* only setting z-index won't automatically hide the overlay, since the background will still shine through you need opacity too */
+  z-index: -1;
+  opacity: 0;
+  padding: 25px;
+}
+
+.modalIsOpen .modalOverlay {
+  z-index: 1;
+  opacity: 1;
+}
+
+.modalOverlay .modal {
+  background-color: #b053be;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  box-shadow: 0px 0px 22px 3px rgba(0, 0, 0, 0.2);
+  /* set position to relative to get close button in right position (span) */
+  position: relative;
+}
+
+.modalOverlay .modal img {
+  /* svg width */
+  width: 128px;
+  /* set height to container height to center svg in modal div using margin */
+  height: 100%;
+  margin: auto;
+}
+
+.modalOverlay .modal span {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: #758ea6;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  /* center pseudo elements that make up the x in the close button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* create x icon using pseudoselectors */
+.modal span:before,
+.modal span:after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  width: 25px;
+  height: 2px;
+}
+
+.modal span:after {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+
+.modal span:before {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
