@@ -4,13 +4,21 @@
 }
 
 .container {
-  width: 400px;
+  width: 450px;
   height: 100%;
   margin: 80px auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  /* set box-shadow to mimick mobile phone */
+  box-shadow: 0px 0px 0px 22px rgba(0, 0, 0, 0.12);
+  background-color: transparent;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
 /* ------------------------
 ACCORDION STYLES
@@ -49,7 +57,7 @@ ACCORDION STYLES
 }
 /* 2. HEADER */
 .accordionHeader {
-  padding: 20px 30px;
+  padding: 30px 30px;
   display: flex;
   flex-direction: row;
   /* vertically align heading + icon */
@@ -58,6 +66,7 @@ ACCORDION STYLES
   justify-content: space-between;
 }
 
+/* - toggle icon styles */
 .accordionHeader span {
   display: flex;
   /* vertically + horizontally align pseudo classes inside span */
@@ -95,4 +104,43 @@ ACCORDION STYLES
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
 }
+/* - when accordion is open hide :after resulting in a minus icon */
+.isOpen .accordionHeader span:after {
+  display: none;
+}
 /* 3. CONTENT */
+.accordionContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /*setverticalalignofsvgimg(andp)tocenter*/
+  align-items: center;
+  box-sizing: border-box;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  padding: 0 30px;
+  transition: opacity 0.2s ease, padding 0.2s ease;
+  -webkit-transition: opacity 0.2s ease, padding 0.2s ease;
+  -moz-transition: opacity 0.2s ease, padding 0.2s ease;
+  -ms-transition: opacity 0.2s ease, padding 0.2s ease;
+  -o-transition: opacity 0.2s ease, padding 0.2s ease;
+}
+
+.accordionContent img {
+  width: 25%;
+}
+.accordionContent p {
+  /* add 10% of container width as padding using flexbox */
+  width: 65%;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+/* - when accordion is open make content visible */
+.isOpen .accordionContent {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  padding: 20px 30px;
+}
