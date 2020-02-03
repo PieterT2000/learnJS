@@ -9,6 +9,7 @@ tabs.forEach((tab, index) => {
     });
     //2. select the tab that was clicked
     tab.classList.add("isSelected");
+    //3. then, match the right contentTab with the current selected tab
     tabContents.forEach(c => {
       c.classList.remove("isSelected");
     });
