@@ -12,7 +12,7 @@
   justify-content: center;
   flex-direction: column;
   /* set box-shadow to mimick mobile phone */
-  box-shadow: 0px 0px 0px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0px 22px 10px rgba(0, 0, 0, 0.12);
   background-color: transparent;
   border-radius: 15px;
   -webkit-border-radius: 15px;
