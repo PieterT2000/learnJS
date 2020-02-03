@@ -21,9 +21,27 @@
   width: 600px;
 }
 
+a,
+a:hover,
+a:focus {
+  /* avoid border taking up the width of the container since display is set to block */
+  width: fit-content;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 2px solid;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
 /* ------------------------
 TABS STYLES
 --------------------------- */
+
 .tabs {
   /* stretch tab buttons so they make up total width of 600px */
   display: flex;
@@ -33,15 +51,39 @@ TABS STYLES
 
 .tabs .tab {
   width: 33.33333333333333333333333333333333%;
-  /*setdefaultborderwhentabisnotselected*/
-  border: 5px solid black;
+  border: 5px solid;
+  /* remove border-bottom to extend tab border to tabContent */
   border-bottom: none;
+  background-color: #eee;
+  /* fade out unselected tabs using filter */
+  filter: grayscale(75%) brightness(0.9);
+  -webkit-filter: grayscale(75%) brightness(0.9);
+  /* push outline of tabContent 5px down to make it visible */
+  margin-bottom: 5px;
+}
+
+/* tab colors */
+.tab.yellow {
+  border-color: #febe0a;
+}
+
+.tab.blue {
+  border-color: #30568f;
+}
+
+.tab.red {
+  border-color: #c60018;
 }
 
 .isSelected.tab {
   background-color: white;
-  border-color: #30568f;
-  /*setz-indextooverwriteoutlineoftabcontentborderwiththetab'sbackground-color*/
+  filter: none;
+  -webkit-filter: none;
+  margin-bottom: 0px;
+  /* on select margin bottom is set to 0 to make outline hide behind white background tab */
+  /* to avoid moving text, convert margin into padding making the default 12px padding-bottom 5px larger */
+  padding-bottom: 17px;
+  /* make outline from tabContent at selected tab invisible */
   z-index: 1;
 }
 
@@ -49,25 +91,36 @@ TABS STYLES
 TAB CONTENT STYLES
 --------------------------- */
 
-/* z-index with borders is not possible so use outline */
-.tabContents .isSelected.tabContent {
-  outline: 5px solid #30568f;
-  visibility: visible;
-  height: 100%;
-  padding: 50px 30px;
-  /* add margin to bottom, left and right of tabcontent because of outline */
-  margin: 0 5px 5px 5px;
-}
-
 .tabContents .tabContent {
   display: flex;
   /* place img besides textContent div */
   flex-direction: row;
   justify-content: space-between;
+  /* hide tabContent that is not selected */
   padding: 0;
   height: 0;
   visibility: hidden;
   margin: 0;
+}
+
+.tabContents .isSelected.tabContent {
+  outline: 5px solid;
+  visibility: visible;
+  height: 100%;
+  padding: 50px 30px;
+  /* put outline on top under the tabs */
+  margin: 0 5px 5px 5px;
+}
+
+/* apply tab colors on select to tabContent as well */
+.tabContents .isSelected.tabContent.red {
+  outline-color: #c60018;
+}
+.tabContents .isSelected.tabContent.blue {
+  outline-color: #30568f;
+}
+.tabContents .isSelected.tabContent.yellow {
+  outline-color: #febe0a;
 }
 
 .tabContents .tabContent .textContent {
@@ -76,4 +129,13 @@ TAB CONTENT STYLES
 
 .tabContents .tabContent img {
   width: 35%;
+}
+
+.tabContents .tabContent .textContent h2 {
+  margin-bottom: 35px;
+}
+
+.tabContents .tabContent .textContent a {
+  margin-top: 25px;
+  display: block;
 }
