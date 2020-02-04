@@ -5,45 +5,47 @@
 
 .container {
   max-width: 100%;
-}
-.container h1 {
-  margin: 35px auto;
-  width: fit-content;
-}
-/* ------------------------
-CAROUSEL AREA STYLES
---------------------------- */
-.carouselArea {
-  /* //center total carousel area in full-width container */
-  margin: 0 auto;
-  width: 800px;
   display: flex;
   flex-direction: column;
-  /* horizontally center dots and carousel itself */
   align-items: center;
+}
+.container h1 {
+  margin: 35px 0;
+  width: fit-content;
 }
 
 /* ------------------------
 CAROUSEL STYLES
 --------------------------- */
 .carousel {
-  /* center slides and buttons */
+  width: 800px;
+  display: flex;
+  /* horizontally center carouselMain area and the dots */
+  flex-direction: column;
+  align-items: center;
+}
+.carousel .carouselMain {
   display: flex;
   flex-direction: row;
+  /* vertically align next and previous buttons */
   align-items: center;
 }
 
-.carousel .contents {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
+.carouselMain .contentsContainer {
+  /* set width of slider container */
   width: 600px;
-  /*putspacebetweenarrowbuttonsandslides*/
+  overflow: hidden;
+  /*put space between arrow buttons and slides*/
   margin: 0 25px;
 }
 
-.carousel .contents .slide {
-  /*letslidestakeupentirespace*/
+.carouselMain .contentsContainer ul.contents {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.carouselMain .contentsContainer .contents .slide {
   width: inherit;
   height: inherit;
   object-fit: cover;
@@ -51,20 +53,20 @@ CAROUSEL STYLES
 }
 
 /* position all other slides out of view */
-.carousel .contents .slide:nth-of-type(2) {
+.carouselMain .contentsContainer .contents .slide:nth-of-type(2) {
   position: absolute;
   top: 0;
-  left: 100%;
+  left: 100%; /*or width of ul -> width of .contentsContainer*/
 }
 
-.contents .slide:nth-of-type(3) {
+.carouselMain .contentsContainer .slide:nth-of-type(3) {
   position: absolute;
   top: 0;
   left: 200%;
 }
 
 /* arrow styles */
-.carousel .arrow {
+.carousel .carouselMain .arrow {
   outline: 0;
   background-color: #000;
   border: none;
@@ -74,7 +76,7 @@ CAROUSEL STYLES
   position: relative;
 }
 
-.carousel .arrow.left {
+.carousel .carouselMain .arrow.left {
   margin-left: 10px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
@@ -83,7 +85,7 @@ CAROUSEL STYLES
   -o-transform: rotate(-45deg);
 }
 
-.carousel .arrow.right {
+.carousel .carouselMain .arrow.right {
   margin-right: 10px;
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
@@ -91,8 +93,13 @@ CAROUSEL STYLES
   -ms-transform: rotate(135deg);
   -o-transform: rotate(135deg);
 }
-.carousel .arrow.left:after,
-.arrow.right:after {
+
+.arrow.right:hover,
+.arrow.left:hover {
+  cursor: pointer;
+}
+.carousel .carouselMain .arrow.left:after,
+.carousel .carouselMain .arrow.right:after {
   content: "";
   display: block;
   background-color: white;
@@ -107,13 +114,18 @@ CAROUSEL STYLES
   -o-transform: rotate(-45deg);
 }
 
+.arrow.hidden {
+  visibility: hidden;
+}
+
 /* ------------------------
 CAROUSEL DOTS STYLES
 --------------------------- */
-.carouselDots {
+.carousel .carouselDots {
   margin-top: 20px;
 }
-.carouselDots .carouselDot {
+.carousel .carouselDots .carouselDot {
+  outline: 0;
   margin: 0 3px;
   border: none;
   background-color: #808080;
@@ -125,8 +137,9 @@ CAROUSEL DOTS STYLES
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  cursor: pointer;
 }
 
-.carouselDots .isActive.carouselDot {
+.carousel .carouselDots .isSelected.carouselDot {
   background-color: #000;
 }
