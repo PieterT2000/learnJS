@@ -18,7 +18,7 @@
 CAROUSEL STYLES
 --------------------------- */
 .carousel {
-  width: 800px;
+  width: 100%;
   display: flex;
   /* horizontally center carouselMain area and the dots */
   flex-direction: column;
@@ -33,7 +33,7 @@ CAROUSEL STYLES
 
 .carouselMain .contentsContainer {
   /* set width of slider container */
-  width: 600px;
+  width: 80vw;
   overflow: hidden;
   /*put space between arrow buttons and slides*/
   margin: 0 25px;
@@ -52,17 +52,10 @@ CAROUSEL STYLES
   object-position: center center;
 }
 
-/* position all other slides out of view */
-.carouselMain .contentsContainer .contents .slide:nth-of-type(2) {
+/* absolute positioning for all slides except the first one, since Javscript sets left property instead of CSS */
+.slide + .slide {
   position: absolute;
   top: 0;
-  left: 100%; /*or width of ul -> width of .contentsContainer*/
-}
-
-.carouselMain .contentsContainer .slide:nth-of-type(3) {
-  position: absolute;
-  top: 0;
-  left: 200%;
 }
 
 /* arrow styles */

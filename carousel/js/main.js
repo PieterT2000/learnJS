@@ -9,6 +9,13 @@ const previousButton = carousel.querySelector(".left");
 const dotsContainer = carousel.querySelector(".carouselDots");
 const dots = Array.from(carousel.querySelectorAll(".carouselDot"));
 
+//get initial slidewidth
+const slideWidth = slides[0].getBoundingClientRect().width; //width is dynamic since being set by CSS using vw
+//set width of each slider to keep things responsive
+slides.forEach((slide, index) => {
+  slide.style.left = `${index * slideWidth}px`;
+});
+
 /* ------------------------------------
 ARROW BUTTONS + DOTS CONFIGURATION
 --------------------------------------- */
@@ -104,11 +111,11 @@ function select(clickedDot, destinationSlide) {
 
 /*
 TODO:
-- Make slider responsive
 - Enable swipe for slider
 */
 
 /*
 DONE:
 - Make navigation button hide once there are no more slides to view
+- Make slider responsive
 */
