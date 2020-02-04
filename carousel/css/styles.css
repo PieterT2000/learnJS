@@ -38,12 +38,12 @@ CAROUSEL STYLES
   overflow: hidden;
   height: 100%;
   width: 600px;
-  /* put space between arrow buttons and slides */
+  /*putspacebetweenarrowbuttonsandslides*/
   margin: 0 25px;
 }
 
 .carousel .contents .slide {
-  /* let slides take up entire space */
+  /*letslidestakeupentirespace*/
   width: inherit;
   height: inherit;
   object-fit: cover;
@@ -51,11 +51,16 @@ CAROUSEL STYLES
 }
 
 /* position all other slides out of view */
-.carousel .contents .slide:nth-of-type(2),
-.contents .slide:nth-of-type(3) {
+.carousel .contents .slide:nth-of-type(2) {
   position: absolute;
   top: 0;
   left: 100%;
+}
+
+.contents .slide:nth-of-type(3) {
+  position: absolute;
+  top: 0;
+  left: 200%;
 }
 
 /* arrow styles */
