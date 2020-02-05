@@ -62,7 +62,7 @@ MODAL STYLES
   /* only setting z-index won't automatically hide the overlay, since the background will still shine through you need opacity too */
   z-index: -1;
   opacity: 0;
-  padding: 25px;
+  padding: 50px;
 }
 
 .modalIsOpen .modalOverlay {
