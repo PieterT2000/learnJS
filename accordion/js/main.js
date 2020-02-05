@@ -1,7 +1,4 @@
-// select accordions + toggle button in header
 const accordionContainer = document.querySelector(".accordionContainer");
-const accordions = document.querySelectorAll(".accordion");
-const toggleIcon = document.querySelector(".toggleIcon");
 
 //Enable event delegation
 accordionContainer.addEventListener("click", e => {
