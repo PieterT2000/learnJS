@@ -9,6 +9,11 @@ const previousButton = carousel.querySelector(".left");
 const dotsContainer = carousel.querySelector(".carouselDots");
 const dots = Array.from(carousel.querySelectorAll(".carouselDot"));
 
+// give each dot an index to enable slide mapping
+dots.forEach((dot, index) => {
+  dot.dataset.index = index;
+});
+
 //get initial slidewidth
 const slideWidth = slides[0].getBoundingClientRect().width; //width is dynamic since being set by CSS using vw
 //set width of each slider to keep things responsive
@@ -64,29 +69,29 @@ previousButton.addEventListener("click", () => {
   currentDot.previousElementSibling.classList.add("isSelected");
 });
 
-dots.forEach((dot, index) => {
-  dot.addEventListener("click", e => {
-    //get slide with the dot's index
-    const slide = slides[index];
-    //get distance to destination
+// Add event delegation to dots container
+dotsContainer.addEventListener("click", e => {
+  // Check explicitly if click is on dot instead of on div
+  const dot = e.target.closest("button");
+  if (dot) {
+    // figure out what the index of the clicked dot is
+    const dotIndex = parseInt(dot.dataset.index);
+    // find matching slide based on index
+    const slide = slides[dotIndex];
+    // move carousel to found slide
     const destination = getComputedStyle(slide).left;
-    if (destination === "auto") {
-      contents.style.left = "0px";
-    } else {
-      contents.style.left = "-" + destination;
-    }
-    //Toggle isSelected class for both clicked dot and destination slide
-    select(e.target, slide);
+    contents.style.left = `-${destination}`;
+    //Add selected classes to dot and slide
+    select(dot, slide);
 
-    // SHOWING/HIDING BUTTONS
-
+    // SHOWING/HIDING ARROW BUTTONS LOGIC
     //on 1st slide hide previous btn
-    if (index === 0) {
+    if (dotIndex === 0) {
       previousButton.classList.add("hidden");
       nextButton.classList.remove("hidden");
     }
     //on last slide hide next btn
-    else if (index === slides.length - 1) {
+    else if (dotIndex === slides.length - 1) {
       nextButton.classList.add("hidden");
       previousButton.classList.remove("hidden");
     }
@@ -95,16 +100,16 @@ dots.forEach((dot, index) => {
       previousButton.classList.remove("hidden");
       nextButton.classList.remove("hidden");
     }
-  });
+  }
 });
 
 function select(clickedDot, destinationSlide) {
   // remove selected class from current dot
   dotsContainer.querySelector(".isSelected").classList.remove("isSelected");
-  // select clicked dot
-  clickedDot.classList.add("isSelected");
   // remove selected class from currentSlide
   contents.querySelector(".isSelected").classList.remove("isSelected");
+  // select clicked dot
+  clickedDot.classList.add("isSelected");
   // select destination slide
   destinationSlide.classList.add("isSelected");
 }
@@ -118,4 +123,5 @@ TODO:
 DONE:
 - Make navigation button hide once there are no more slides to view
 - Make slider responsive
+- Refactor code (add event delegation)
 */
