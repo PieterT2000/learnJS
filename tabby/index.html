@@ -17,12 +17,12 @@
       <h1>Tabbed Component</h1>
       <div class="tabby">
         <div class="tabs">
-          <button class="tab blue isSelected">Bach</button>
-          <button class="tab yellow">Chopin</button>
-          <button class="tab red">Franck</button>
+          <button data-target="bach" class="tab blue isSelected">Bach</button>
+          <button data-target="chopin" class="tab yellow">Chopin</button>
+          <button data-target="franck" class="tab red">Franck</button>
         </div>
         <div class="tabContents">
-          <section class="tabContent blue isSelected">
+          <section id="bach" class="tabContent blue isSelected">
             <div class="textContent">
               <h2>Bach</h2>
               <p>
@@ -39,7 +39,7 @@
               alt="Johan Sebastian Bach"
             />
           </section>
-          <section class="tabContent yellow">
+          <section id="chopin" class="tabContent yellow">
             <div class="textContent">
               <h2>Chopin</h2>
               <p>
@@ -53,7 +53,7 @@
             </div>
             <img src="img/Chopin,_by_Wodzinska.jpeg" alt="Frederic Chopin" />
           </section>
-          <section class="tabContent red">
+          <section id="franck" class="tabContent red">
             <div class="textContent">
               <h2>Franck</h2>
               <p>

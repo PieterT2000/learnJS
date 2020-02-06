@@ -41,7 +41,6 @@ button:focus {
 /* ------------------------
 TABS STYLES
 --------------------------- */
-
 .tabs {
   /* stretch tab buttons so they make up total width of 600px */
   display: flex;

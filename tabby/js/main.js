@@ -1,18 +1,18 @@
-const tabs = Array.from(document.querySelectorAll(".tab"));
-const tabContents = Array.from(document.querySelectorAll(".tabContent"));
+const tabsContainer = document.querySelector(".tabs");
+const tabContents = document.querySelector(".tabContents");
 
-tabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => {
-    // 1. on click unselect all tabs
-    tabs.forEach(t => {
-      t.classList.remove("isSelected");
-    });
-    //2. select the tab that was clicked
+// Add event delegation to tabsContainer
+tabsContainer.addEventListener("click", e => {
+  if (e.target.closest(".tabs")) {
+    const tab = e.target;
+    const target = tab.dataset.target;
+    // Get matching content tab using data attribute from tab
+    const contentTab = tabContents.querySelector(`#${target}`);
+    // Remove seleccted class from current active tab + content
+    tabContents.querySelector(".isSelected").classList.remove("isSelected");
+    tabContainer.querySelector(".isSelected").classList.remove("isSelected");
+    // Add active class to clicked tab + content
     tab.classList.add("isSelected");
-    //3. then, match the right contentTab with the current selected tab
-    tabContents.forEach(c => {
-      c.classList.remove("isSelected");
-    });
-    tabContents[index].classList.add("isSelected");
-  });
+    contentTab.classList.add("isSelected");
+  }
 });
