@@ -24,6 +24,7 @@ SITE CONTAINER STYLES
   -moz-transition: color 0.25s, background-color 0.25s;
   -ms-transition: color 0.25s, background-color 0.25s;
   -o-transition: color 0.25s, background-color 0.25s;
+  outline: 0;
 }
 
 .header .menuButton:hover,
@@ -69,11 +70,16 @@ OFFCANVAS MENU STYLES
 ----------------------- */
 .offCanvasMenu,
 .siteContainer {
-  transition: transform 0.3s ease-in;
-  -webkit-transition: transform 0.3s ease-in;
-  -moz-transition: transform 0.3s ease-in;
-  -ms-transition: transform 0.3s ease-in;
-  -o-transition: transform 0.3s ease-in;
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+  -webkit-transition: transform 0.3s ease-out;
+  -moz-transition: transform 0.3s ease-out;
+  -ms-transition: transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
 }
 .menuIsOpen .offCanvasMenu,
 .menuIsOpen .siteContainer {
