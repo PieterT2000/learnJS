@@ -38,6 +38,11 @@ CONTAINER STYLES
   -o-border-radius: 5px;
   border: none;
   font-size: 20px;
+  transition: 0.25s background-color ease;
+  -webkit-transition: 0.25s background-color ease;
+  -moz-transition: 0.25s background-color ease;
+  -ms-transition: 0.25s background-color ease;
+  -o-transition: 0.25s background-color ease;
 }
 
 .tapBox button:hover {
@@ -59,13 +64,20 @@ MODAL STYLES
   right: 0;
   bottom: 0;
   background-color: #6c7075;
-  /* only setting z-index won't automatically hide the overlay, since the background will still shine through you need opacity too */
+  /*onlysettingz-indexwon'tautomaticallyhidetheoverlay,sincethebackgroundwillstillshinethroughyouneedopacitytoo*/
   z-index: -1;
   opacity: 0;
   padding: 50px;
+  transition: opacity 0.3s ease-out, z-index 0s 0.3s linear;
+  -webkit-transition: opacity 0.3s ease-out, z-index 0s 0.3s linear;
+  -moz-transition: opacity 0.3s ease-out, z-index 0s 0.3s linear;
+  -ms-transition: opacity 0.3s ease-out, z-index 0s 0.3s linear;
+  -o-transition: opacity 0.3s ease-out, z-index 0s 0.3s linear;
 }
 
 .modalIsOpen .modalOverlay {
+  /* lol one-way transition does only work if you put an 's' after 0 :) */
+  transition-delay: 0s;
   z-index: 1;
   opacity: 1;
 }
@@ -82,13 +94,14 @@ MODAL STYLES
   box-shadow: 0px 0px 22px 3px rgba(0, 0, 0, 0.2);
   /* set position to relative to get close button in right position (span) */
   position: relative;
+  /* centerwaving hand */
+  display: flex;
 }
 
 .modalOverlay .modal img {
   /* svg width */
   width: 128px;
-  /* set height to container height to center svg in modal div using margin */
-  height: 100%;
+  height: auto;
   margin: auto;
 }
 
@@ -141,3 +154,110 @@ MODAL STYLES
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
 }
+
+/* --------------------- 
+ANIMATIONS
+------------------------ */
+@keyframes bouncingPointer {
+  0% {
+    opacity: 0;
+    transform: translateY(3em);
+    -webkit-transform: translateY(3em);
+    -moz-transform: translateY(3em);
+    -ms-transform: translateY(3em);
+    -o-transform: translateY(3em);
+  }
+  /* note: since animation delay is 1s, animation needs to finished at 50% if total duration is 2s */
+  50%,
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* add bouncing animation to pointer */
+.pointingHand {
+  animation: bouncingPointer 2s cubic-bezier(0.18, 0.89, 0.32, 1.28) infinite;
+  -webkit-animation: bouncingPointer 2s cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    infinite;
+}
+
+/* PLEASE NOTE -> the animation below was originally for waving hand on the modal but since it's quite a pain in the ass to make infinite repeat work with these complex animations, we want to use JavaScript instead */
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.25);
+    -webkit-transform: scale(0.25);
+    -moz-transform: scale(0.25);
+    -ms-transform: scale(0.25);
+    -o-transform: scale(0.25);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    -ms-transform: rotate(-15deg);
+    -o-transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    -ms-transform: rotate(-15deg);
+    -o-transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+}
+
+/* .modalIsOpen .wavingHand {
+  transform-origin: bottom center;
+  animation: zoom 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    wave 1s 0.55s ease-in-out;
+  -webkit-animation: zoom 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    wave 1s 0.55s ease-in-out;
+} */
