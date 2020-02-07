@@ -110,27 +110,29 @@ ACCORDION STYLES
 }
 /* 3. CONTENT */
 .accordionContent {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  transition: height 0.3s ease-in, opacity 0.15s 0.3s ease-out;
+  -webkit-transition: height 0.3s ease-in, opacity 0.15s 0.3s ease-out;
+  -moz-transition: height 0.3s ease-in, opacity 0.15s 0.3s ease-out;
+  -ms-transition: height 0.3s ease-in, opacity 0.15s 0.3s ease-out;
+  -o-transition: height 0.3s ease-in, opacity 0.15s 0.3s ease-out;
+}
+
+.accordionContent .inner {
+  /*Now padding is set to the inner box so we don't need to animate padding*/
+  padding: 20px 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /*setverticalalignofsvgimg(andp)tocenter*/
   align-items: center;
-  box-sizing: border-box;
-  visibility: hidden;
-  opacity: 0;
-  height: 0;
-  padding: 0 30px;
-  transition: opacity 0.2s ease, padding 0.2s ease;
-  -webkit-transition: opacity 0.2s ease, padding 0.2s ease;
-  -moz-transition: opacity 0.2s ease, padding 0.2s ease;
-  -ms-transition: opacity 0.2s ease, padding 0.2s ease;
-  -o-transition: opacity 0.2s ease, padding 0.2s ease;
 }
 
-.accordionContent img {
+.accordionContent .inner img {
   width: 25%;
 }
-.accordionContent p {
+.accordionContent .inner p {
   /* add 10% of container width as padding using flexbox */
   width: 65%;
   font-size: 18px;
@@ -141,6 +143,5 @@ ACCORDION STYLES
 .isOpen .accordionContent {
   visibility: visible;
   opacity: 1;
-  height: auto;
-  padding: 20px 30px;
+  /* Note: when height doesn't have a specific height you can't animate it */
 }
