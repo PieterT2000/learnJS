@@ -29,7 +29,7 @@ nextButton.addEventListener("click", () => {
   const nextSlide = currentSlide.nextElementSibling;
   //get distance of destination slide from css file
   const destination = getComputedStyle(nextSlide).left;
-  contents.style.left = "-" + destination;
+  contents.style.transform = `translateX(-${destination})`;
 
   currentSlide.classList.remove("isSelected");
   nextSlide.classList.add("isSelected");
@@ -50,9 +50,9 @@ previousButton.addEventListener("click", () => {
   const previousSlide = currentSlide.previousElementSibling;
   const destination = getComputedStyle(previousSlide).left;
   if (destination === "auto") {
-    contents.style.left = "0px";
+    contents.style.transform = `translateX(0px)`;
   } else {
-    contents.style.left = "-" + destination;
+    contents.style.transform = `translateX(-${destination})`;
   }
 
   currentSlide.classList.remove("isSelected");
@@ -80,7 +80,7 @@ dotsContainer.addEventListener("click", e => {
     const slide = slides[dotIndex];
     // move carousel to found slide
     const destination = getComputedStyle(slide).left;
-    contents.style.left = `-${destination}`;
+    contents.style.transform = `translateX(-${destination})`;
     //Add selected classes to dot and slide
     select(dot, slide);
 
@@ -117,6 +117,7 @@ function select(clickedDot, destinationSlide) {
 /*
 TODO:
 - Enable swipe for slider
+- Add smooth slider transition
 */
 
 /*
