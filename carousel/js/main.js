@@ -24,49 +24,67 @@ slides.forEach((slide, index) => {
 /* ------------------------------------
 ARROW BUTTONS + DOTS CONFIGURATION
 --------------------------------------- */
-nextButton.addEventListener("click", () => {
-  const currentSlide = contents.querySelector(".isSelected");
-  const nextSlide = currentSlide.nextElementSibling;
-  //get distance of destination slide from css file
-  const destination = getComputedStyle(nextSlide).left;
-  contents.style.transform = `translateX(-${destination})`;
-
-  currentSlide.classList.remove("isSelected");
-  nextSlide.classList.add("isSelected");
-  // Shows previous button on second slide
-  previousButton.classList.remove("hidden");
-  //Hide next button on last slide
-  if (!nextSlide.nextElementSibling) {
-    nextButton.classList.add("hidden");
+const obj = {
+  nextSlide(currentSlide) {
+    // Shows previous button on second slide
+    previousButton.classList.remove("hidden");
+    return {
+      destination: currentSlide.nextElementSibling,
+      current: currentSlide
+    };
+  },
+  previousSlide(currentSlide) {
+    //Show next button from slide that is last but one
+    nextButton.classList.remove("hidden");
+    return {
+      destination: currentSlide.previousElementSibling,
+      current: currentSlide
+    };
+  },
+  destination(obj) {
+    const { destination, current } = obj;
+    const distance = getComputedStyle(destination).left;
+    contents.style.transform = `translateX(-${distance})`;
+    current.classList.remove("isSelected");
+    destination.classList.add("isSelected");
+    //Hide next button on last slide
+    if (!destination.nextElementSibling) {
+      nextButton.classList.add("hidden");
+    }
+    //hide previous button on first slide
+    if (!destination.previousElementSibling) {
+      previousButton.classList.add("hidden");
+    }
+  },
+  shiftSlide(direction, current) {
+    direction === "next"
+      ? this.destination(this.nextSlide(current))
+      : this.destination(this.previousSlide(current));
+  },
+  updateDotState(direction, currentDot) {
+    currentDot.classList.remove("isSelected");
+    direction === "next"
+      ? currentDot.nextElementSibling.classList.add("isSelected")
+      : currentDot.previousElementSibling.classList.add("isSelected");
   }
+};
+
+nextButton.addEventListener("click", () => {
+  //Move slide
+  const currentSlide = contents.querySelector(".isSelected");
+  obj.shiftSlide("next", currentSlide);
   //Update dot state
   const currentDot = dotsContainer.querySelector(".isSelected");
-  currentDot.classList.remove("isSelected");
-  currentDot.nextElementSibling.classList.add("isSelected");
+  obj.updateDotState("next", currentDot);
 });
 
 previousButton.addEventListener("click", () => {
+  //Move slide
   const currentSlide = contents.querySelector(".isSelected");
-  const previousSlide = currentSlide.previousElementSibling;
-  const destination = getComputedStyle(previousSlide).left;
-  if (destination === "auto") {
-    contents.style.transform = `translateX(0px)`;
-  } else {
-    contents.style.transform = `translateX(-${destination})`;
-  }
-
-  currentSlide.classList.remove("isSelected");
-  previousSlide.classList.add("isSelected");
-  //Show next button from slide that is last but one
-  nextButton.classList.remove("hidden");
-  //hide previous button on first slide
-  if (!previousSlide.previousElementSibling) {
-    previousButton.classList.add("hidden");
-  }
+  obj.shiftSlide("prev", currentSlide);
   // Update dot state
   const currentDot = dotsContainer.querySelector(".isSelected");
-  currentDot.classList.remove("isSelected");
-  currentDot.previousElementSibling.classList.add("isSelected");
+  obj.updateDotState("prev", currentDot);
 });
 
 // Add event delegation to dots container
