@@ -16,21 +16,21 @@ openFirstAccordion();
 
 //Enable event delegation
 accordionContainer.addEventListener("click", e => {
+  // If click is outside header return early
   const accordionHeader = e.target.closest(".accordionHeader");
-  // check if click is on accordion header or on elements inside header
-  if (accordionHeader) {
-    //Get height of content box accordion
-    const accordionContent = e.target.closest(".accordionHeader")
-      .nextElementSibling;
-    const innerHeight = accordionContent
-      .querySelector(".inner")
-      .getBoundingClientRect().height;
-    // Get currently open accordion and close it
-    const openAccordion = accordionContainer.querySelector(".isOpen");
-    openAccordion.querySelector(".accordionContent").style.height = "0px";
-    openAccordion.classList.remove("isOpen");
-    // Open clicked accordion
-    accordionContent.style.height = `${innerHeight}px`;
-    e.target.closest(".accordion").classList.add("isOpen");
-  }
+  if (!accordionHeader) return;
+
+  //Get height of content box accordion
+  const accordionContent = e.target.closest(".accordionHeader")
+    .nextElementSibling;
+  const innerHeight = accordionContent
+    .querySelector(".inner")
+    .getBoundingClientRect().height;
+  // Get currently open accordion and close it
+  const openAccordion = accordionContainer.querySelector(".isOpen");
+  openAccordion.querySelector(".accordionContent").style.height = "0px";
+  openAccordion.classList.remove("isOpen");
+  // Open clicked accordion
+  accordionContent.style.height = `${innerHeight}px`;
+  e.target.closest(".accordion").classList.add("isOpen");
 });
