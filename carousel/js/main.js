@@ -3,11 +3,11 @@ INITIAL CONFIG
 --------------------------------------- */
 const carousel = document.querySelector(".carousel");
 const contents = carousel.querySelector(".contents");
-const slides = Array.from(carousel.querySelectorAll(".slide"));
+const slides = [...carousel.querySelectorAll(".slide")];
 const nextButton = carousel.querySelector(".right");
 const previousButton = carousel.querySelector(".left");
 const dotsContainer = carousel.querySelector(".carouselDots");
-const dots = Array.from(carousel.querySelectorAll(".carouselDot"));
+const dots = [...carousel.querySelectorAll(".carouselDot")];
 
 // give each dot an index to enable slide mapping
 dots.forEach((dot, index) => {
@@ -85,21 +85,22 @@ dotsContainer.addEventListener("click", e => {
     select(dot, slide);
 
     // SHOWING/HIDING ARROW BUTTONS LOGIC
+
     //on 1st slide hide previous btn
     if (dotIndex === 0) {
       previousButton.classList.add("hidden");
       nextButton.classList.remove("hidden");
+      return;
     }
     //on last slide hide next btn
-    else if (dotIndex === slides.length - 1) {
+    if (dotIndex === slides.length - 1) {
       nextButton.classList.add("hidden");
       previousButton.classList.remove("hidden");
+      return;
     }
     //on all other occassions show both buttons
-    else {
-      previousButton.classList.remove("hidden");
-      nextButton.classList.remove("hidden");
-    }
+    previousButton.classList.remove("hidden");
+    nextButton.classList.remove("hidden");
   }
 });
 
