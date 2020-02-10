@@ -15,17 +15,42 @@
   <body>
     <div class="container">
       <h1>JavaScript Calculator</h1>
+      <!-- NOTE: Inspiration is the MacOS standard calculator -->
       <div class="calculator">
         <div class="display">
           <span>5</span>
         </div>
         <div class="buttons">
           <div class="col-3">
-            <div class="upper"></div>
-            <div class="digits"></div>
-            <div class="bottom"></div>
+            <div class="upper">
+              <button class="clear"><span>AC</span></button>
+              <button class="toggleNegativity"><span>+/-</span></button>
+              <button><span>%</span></button>
+            </div>
+            <!-- all digits go here but zero excluded (included in bottom div) -->
+            <div class="digits">
+              <button><span>7</span></button>
+              <button><span>8</span></button>
+              <button><span>9</span></button>
+              <button><span>4</span></button>
+              <button><span>5</span></button>
+              <button><span>6</span></button>
+              <button><span>1</span></button>
+              <button><span>2</span></button>
+              <button><span>3</span></button>
+            </div>
+            <div class="bottom">
+              <button class="zero"><span>0</span></button>
+              <button class="comma"><span>,</span></button>
+            </div>
           </div>
-          <div class="col-1"></div>
+          <div class="col-1">
+            <button class="divide"><span>%</span></button>
+            <button class="multiply"><span>x</span></button>
+            <button class="subtract"><span>-</span></button>
+            <button class="add"><span>+</span></button>
+            <button class="enter"><span>=</span></button>
+          </div>
         </div>
       </div>
     </div>
