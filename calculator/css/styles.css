@@ -19,7 +19,8 @@ CALCULATOR STYLES
 ----------------------------- */
 
 .calculator {
-  width: 400px;
+  /* 4 times button width */
+  width: 240px;
   height: auto;
   background-color: rgb(56, 56, 61);
   border-radius: 5px;
@@ -27,7 +28,93 @@ CALCULATOR STYLES
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  box-shadow: 0px 10px 32px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* WINDOW STYLES */
+.calculator .window {
+  background-color: transparent;
+  width: 65px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.calculator .window .close,
+.window .minimize,
+.window .extend {
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.window .close {
+  background-color: rgb(252, 91, 87);
+}
+.window .minimize {
+  background-color: rgb(229, 191, 60);
+}
+.window .extend {
+  background-color: rgb(87, 192, 56);
+}
+
+.window:hover .close::before,
+.window:hover .close::after,
+.window:hover .minimize::before,
+.window:hover .extend::before,
+.window:hover .extend::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 1px;
+  opacity: 1;
+}
+
+/* close icon */
+.close::before {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  background-color: rgb(159, 11, 17);
+}
+.close::after {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  background-color: rgb(159, 11, 17);
+}
+
+/* minimize icocn */
+.minimize::before {
+  background-color: rgb(178, 140, 38);
+}
+
+/* extend icon */
+.extend::before {
+  background-color: rgb(8, 91, 10);
+}
+.extend::after {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  background-color: rgb(8, 91, 10);
+}
+
+/* DISPLAY STYLES */
 .calculator .display {
   width: 100%;
   height: 75px;
@@ -43,28 +130,196 @@ CALCULATOR STYLES
   font-weight: 300;
   padding-right: 10px;
 }
-/* buttons layout structure 3:1 */
+
+/* BUTTON STYLES */
+/* 1. structure */
 .calculator .buttons {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
+  padding: 0 1px;
 }
 .calculator .buttons .col-3 {
   width: 75%;
+  display: flex;
+  flex-direction: column;
 }
 .calculator .buttons .col-1 {
   width: 25%;
 }
+.calculator .buttons .col-3 .upper,
+.col-3 .digits,
+.col-3 .bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  flex-wrap: wrap;
+}
 
-/* buttons styles */
+.calculator .buttons button {
+  /* by default each button takes up 1/3 of the column */
+  width: 33.333333333333333333333333333333%;
+  height: 50px;
+}
+.calculator .buttons .col-3 .bottom .zero {
+  width: 66.666666666666666666666666666666%;
+}
+.calculator .buttons .col-1 button {
+  /* buttons in col-1 take up 100% of column width */
+  width: 100%;
+}
+
+/* 2. other styles */
+.buttons button {
+  /* by default each button takes up 1/3 of the column */
+  width: 33.33333333333333333%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-bottom: 1px solid rgb(56, 56, 61);
+  color: white;
+  font-weight: 300;
+}
+
+.col-3 .upper button,
+.digits button,
+.bottom button {
+  border-right: 1px solid rgb(56, 56, 61);
+}
 .col-3 .upper button {
   background-color: rgb(77, 77, 81);
+  font-size: 19px;
+  font-weight: 300;
 }
 .col-3 .digits button,
 .col-3 .bottom button {
   background-color: rgb(128, 128, 130);
+  font-size: 22px;
 }
 .col-1 button {
   background-color: rgb(253, 158, 43);
+  padding: 0;
+}
+
+.col-3 button.zero {
+  border-bottom-left-radius: 5px;
+}
+.col-1 button.enter {
+  border-bottom-right-radius: 5px;
+}
+
+/* -------------------------------
+OPERATOR ICONS 
+---------------------------------- */
+
+.divide span,
+.multiply span,
+.subtract span,
+.add span,
+.enter span,
+.toggleNegativity span {
+  width: 16px;
+  height: 2px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+
+/* 1. Dividing icon */
+.divide span::before,
+.divide span::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 3px;
+  height: 3px;
+  background-color: white;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+.divide span::before {
+  top: -7px;
+}
+
+.divide span::after {
+  top: 6px;
+}
+
+/* 2. Multiplication and add icon */
+.multiply span {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+.multiply span::before,
+.add span::before,
+/* this applies to negation icon */
+span.plus::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: white;
+  width: 100%;
+  height: 2px;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+}
+
+/* 3. Enter (=) icon */
+.enter {
+  display: flex;
+  flex-direction: column;
+}
+
+.enter span:first-of-type {
+  margin-bottom: 4px;
+}
+
+/* 4. Toggle negativity icon */
+.toggleNegativity {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-3 .upper .toggleNegativity .plus {
+  top: -2px;
+  left: -8px;
+}
+.col-3 .upper .toggleNegativity .plus,
+/* the before pseudo selector is the upright part of the icon */
+.col-3 .upper .toggleNegativity .plus::before {
+  width: 9px;
+  height: 1.5px;
+}
+
+.col-3 .upper .toggleNegativity .middle {
+  transform: rotate(-70deg);
+  -webkit-transform: rotate(-60deg);
+  -moz-transform: rotate(-70deg);
+  -ms-transform: rotate(-70deg);
+  -o-transform: rotate(-70deg);
+  width: 20px;
+  height: 1.5px;
+}
+
+.col-3 .upper .toggleNegativity .minus {
+  width: 9px;
+  top: 2px;
+  right: -8px;
+  height: 1.5px;
 }
