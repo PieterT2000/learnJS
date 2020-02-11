@@ -9,28 +9,33 @@ const previousButton = carousel.querySelector(".left");
 const dotsContainer = carousel.querySelector(".carouselDots");
 const dots = [...carousel.querySelectorAll(".carouselDot")];
 
-// give each dot an index to enable slide mapping
-dots.forEach((dot, index) => {
-  dot.dataset.index = index;
-});
+/**
+ * Loops over all dots and sets an index attribute foreach one
+ * @param {Array} dots
+ */
+const indexDots = dots => {
+  dots.forEach((dot, index) => (dot.dataset.index = index));
+};
+indexDots(dots);
 
-//get initial slidewidth
-const slideWidth = slides[0].getBoundingClientRect().width; //width is dynamic since being set by CSS using vw
-//set width of each slider to keep things responsive
-slides.forEach((slide, index) => {
-  slide.style.left = `${index * slideWidth}px`;
-});
+/**
+ * Sets inital position for all slides
+ * @param {Array} slides The slides
+ */
+const setSlidePositions = slides => {
+  //width is dynamic since it's being set by CSS using vw
+  const slideWidth = slides[0].getBoundingClientRect().width;
+  slides.forEach(
+    (slide, index) => (slide.style.left = `${index * slideWidth}px`)
+  );
+};
+setSlidePositions(slides);
 
 /* ------------------------------------
 EVENT HANDLING
 --------------------------------------- */
-nextButton.addEventListener("click", () => {
-  shiftSlide("next");
-});
-
-previousButton.addEventListener("click", () => {
-  shiftSlide("prev");
-});
+nextButton.addEventListener("click", () => shiftSlide("next"));
+previousButton.addEventListener("click", () => shiftSlide("prev"));
 
 dotsContainer.addEventListener("click", e => {
   const dot = e.target.closest("button");
@@ -100,6 +105,11 @@ function handleClasses(data) {
   //On all other occassions show both buttons
   del(previousButton, "hidden");
   del(nextButton, "hidden");
+}
+
+function switchSlide() {
+  // Destination should be passed by parameter
+  // Switch slides solely based on dotindex
 }
 
 /*
