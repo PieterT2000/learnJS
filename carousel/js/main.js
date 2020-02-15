@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 /* ------------------------------------
 INITIAL CONFIG
 --------------------------------------- */
@@ -34,7 +35,12 @@ setSlidePositions(slides);
 /* ------------------------------------
 EVENT HANDLING
 --------------------------------------- */
-nextButton.addEventListener("click", () => shiftSlide("next"));
+nextButton.addEventListener("click", () => {
+  // Get destination slide
+  // const currentSlide = contents.querySelector('isSelected')
+  // const currentDot =
+  shiftSlide("next");
+});
 previousButton.addEventListener("click", () => shiftSlide("prev"));
 
 dotsContainer.addEventListener("click", e => {
@@ -107,9 +113,17 @@ function handleClasses(data) {
   del(nextButton, "hidden");
 }
 
-function switchSlide() {
-  // Destination should be passed by parameter
+function switchSlide(target) {
   // Switch slides solely based on dotindex
+  const currentDot = dotsContainer.querySelector("isSelected");
+  const index = parseInt(currentDot.dataset.index);
+  const currentSlide = slides[index];
+
+  // Get destination slide
+  const destinationIndex = getDirection(target, index) || target;
+  const getDirection = (target, index) => {
+    target === "next" ? index++ : index--;
+  };
 }
 
 /*
