@@ -125,7 +125,7 @@ CALCULATOR STYLES
 }
 
 .calculator .display span {
-  font-size: 48px;
+  font-size: 3rem;
   color: white;
   font-weight: 300;
   padding-right: 10px;
